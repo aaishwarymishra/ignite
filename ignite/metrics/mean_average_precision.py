@@ -3,7 +3,6 @@ from collections.abc import Callable, Sequence
 from typing import cast, Literal
 
 import torch
-from typing_extensions import Literal
 
 import ignite.distributed as idist
 from ignite.distributed.utils import all_gather_tensors_with_shapes
