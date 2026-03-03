@@ -1,5 +1,6 @@
 import warnings
-from typing import Callable, Sequence, cast
+from collections.abc import Callable, Sequence
+from typing import cast, Literal
 
 import torch
 from typing_extensions import Literal

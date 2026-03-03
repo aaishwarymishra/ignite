@@ -1,5 +1,6 @@
 import json
-from typing import Callable, Collection, Literal
+from collections.abc import Callable, Collection
+from typing import Literal
 
 import torch
 
