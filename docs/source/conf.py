@@ -13,7 +13,6 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import doctest
-
 import os
 import shutil
 import sys
@@ -24,6 +23,20 @@ from datetime import datetime
 import pytorch_sphinx_theme
 
 import ignite
+
+# Workaround for sphinxcontrib-versioning calling old incompatible
+# ``format_date`` signature.
+try:
+    import sphinxcontrib_versioning.sphinx_ as _scv_sphinx
+    from sphinx.util.i18n import format_date as _sphinx_format_date
+
+    def _format_date_compat(format, date, language=None):
+        return _sphinx_format_date(format=format, date=date, language=language)
+
+    _scv_sphinx.format_date = _format_date_compat
+except Exception:
+    # Best-effort monkeypatch; if import fails, leave things alone.
+    pass
 
 # -- Project information -----------------------------------------------------
 
