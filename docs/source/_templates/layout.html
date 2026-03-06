@@ -113,10 +113,18 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    gtag('js', new Datefixedfiafixed());
 
     gtag('config', 'G-5FELLLFHCP');
   </script>
+  <style>
+    /* Make the sidebar sticky */
+    #pytorch-left-menu {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+    }
+  </style>
 </head>
 
 <div class="container-fluid header-holder tutorials-header" id="header-holder">
@@ -154,6 +162,14 @@
 
           <li>
             <a href="{{ theme_variables.external_urls['home'] }}">⊳ pytorch-ignite.ai</a>
+          </li>
+
+          <li>
+            <a href="#" id="search-icon-btn" aria-label="Search" style="display: flex; align-items: center;">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px;">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </a>
           </li>
 
 
@@ -196,7 +212,7 @@
               {% endif %}
             {% endif %}
 
-            <div role="search">
+            <div role="search" style="display: none;">
               <form id="rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get">
                 <input type="text" name="q" placeholder="{{ _('Search docs') }}" />
                 <input type="hidden" name="check_keywords" value="yes" />
@@ -505,6 +521,57 @@
   <!-- End Mobile Menu -->
 
   <script type="text/javascript" src="{{ pathto('_static/js/vendor/anchor.min.js', 1) }}"></script>
+
+  <div id="search-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 20px; border-radius: 8px; width: 80%; max-width: 600px; position: relative; display: flex; flex-direction: column;">
+      <span id="close-search" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px;">&times;</span>
+      <h3 style="margin-top: 0; margin-bottom: 15px; color: #333;">Search Docs</h3>
+      <form id="overlay-rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get" style="display: flex;">
+        <input type="text" name="q" placeholder="{{ _('Search docs') }}" style="flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;" id="overlay-search-input" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+        <button type="submit" style="margin-left: 10px; padding: 10px 20px; background: #ee4c2c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var searchBtn = document.getElementById("search-icon-btn");
+      var searchOverlay = document.getElementById("search-overlay");
+      var closeSearch = document.getElementById("close-search");
+      var searchInput = document.getElementById("overlay-search-input");
+
+      if (searchBtn && searchOverlay) {
+        searchBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          searchOverlay.style.display = "flex";
+          setTimeout(function() { searchInput.focus(); }, 100);
+        });
+
+        closeSearch.addEventListener("click", function() {
+          searchOverlay.style.display = "none";
+        });
+
+        searchOverlay.addEventListener("click", function(e) {
+          if (e.target === searchOverlay) {
+            searchOverlay.style.display = "none";
+          }
+        });
+
+        document.addEventListener("keydown", function(e) {
+          if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+            e.preventDefault();
+            searchOverlay.style.display = "flex";
+            setTimeout(function() { searchInput.focus(); }, 100);
+          } else if (e.key === "Escape" && searchOverlay.style.display === "flex") {
+            e.preventDefault();
+            searchOverlay.style.display = "none";
+          }
+        });
+      }
+    });
+  </script>
 
   <script type="text/javascript">
     var collapsedSections = []
