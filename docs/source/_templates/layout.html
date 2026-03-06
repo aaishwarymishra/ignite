@@ -113,18 +113,10 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Datefixedfiafixed());
+    gtag('js', new Date());
 
     gtag('config', 'G-5FELLLFHCP');
   </script>
-  <style>
-    /* Make the sidebar sticky */
-    #pytorch-left-menu {
-      position: fixed;
-      top: 0;
-      height: 100vh;
-    }
-  </style>
 </head>
 
 <div class="container-fluid header-holder tutorials-header" id="header-holder">
@@ -567,6 +559,13 @@
           } else if (e.key === "Escape" && searchOverlay.style.display === "flex") {
             e.preventDefault();
             searchOverlay.style.display = "none";
+          }
+          else if (e.key === "Enter" && searchOverlay.style.display === "flex") {
+            var activeElement = document.activeElement;
+            if (activeElement === searchInput) {
+              e.preventDefault();
+              activeElement.form.submit();
+            }
           }
         });
       }
