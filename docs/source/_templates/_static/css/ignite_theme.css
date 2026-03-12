@@ -18,7 +18,12 @@ div.container a.header-logo {
   left: 0;
   width: inherit;
   color: #fcfcfc;
-  font-family: FreightSans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:
+    FreightSans,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
   background: #d1d2d5;
   z-index: 400;
 }
@@ -197,8 +202,9 @@ article.pytorch-article .class dt > span span.pre,
 article.pytorch-article .function dt > span span.pre {
   color: inherit;
   font-size: 87.5%;
-  font-family: IBMPlexMono, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  font-family:
+    IBMPlexMono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 /* Sphinx >=3.5: Fix annotations */
@@ -206,4 +212,34 @@ article.pytorch-article .class dt span.pre,
 article.pytorch-article .function dt span.pre {
   color: inherit;
   padding: 2px 0.2px;
+}
+
+/* Search Button in Sidebar */
+#search-icon-btn {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 8px;
+  background: transparent;
+  color: #ee4c2c;
+  border: 2px solid #ee4c2c;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+#search-icon-btn:hover {
+  background: rgba(238, 76, 44, 0.1);
+  border-color: #d43613;
+  box-shadow: 0 2px 8px rgba(238, 76, 44, 0.2);
+}
+
+#search-icon-btn:active {
+  background: rgba(238, 76, 44, 0.05);
+  transform: scale(0.98);
 }
