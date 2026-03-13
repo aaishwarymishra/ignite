@@ -197,21 +197,13 @@
               {% endif %}
             {% endif %}
 
-            <div role="search" style="display: none;">
+            <div role="search" id="search-icon-btn">
               <form id="rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get">
-                <input type="text" name="q" placeholder="{{ _('Search docs') }}" />
+                <input type="text" name="q" placeholder="{{ _('Search docs') }}" readonly/>
                 <input type="hidden" name="check_keywords" value="yes" />
                 <input type="hidden" name="area" value="default" />
               </form>
             </div>
-
-            <!-- Search Icon Button in Sidebar -->
-            <button id="search-icon-btn" aria-label="Search docs">
-              <svg width="18" height="18" fill="#ee4c2c" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-              <span>Search</span>
-            </button>
 
             {% endblock %}
           </div>
@@ -515,15 +507,15 @@
 
   <script type="text/javascript" src="{{ pathto('_static/js/vendor/anchor.min.js', 1) }}"></script>
 
-  <div id="search-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
-    <div style="background: white; padding: 20px; border-radius: 8px; width: 80%; max-width: 600px; position: relative; display: flex; flex-direction: column;">
-      <span id="close-search" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px;">&times;</span>
-      <h3 style="margin-top: 0; margin-bottom: 15px; color: #333;">Search Docs</h3>
-      <form id="overlay-rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get" style="display: flex;">
-        <input type="text" name="q" placeholder="{{ _('Search docs') }}" style="flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;" id="overlay-search-input" />
+  <div id="search-overlay">
+    <div class="search-overlay-content">
+      <span id="close-search">&times;</span>
+      <h3 class="search-overlay-title">Search Docs</h3>
+      <form id="overlay-rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get">
+        <input type="text" name="q" placeholder="{{ _('Search docs') }}" id="overlay-search-input" />
         <input type="hidden" name="check_keywords" value="yes" />
         <input type="hidden" name="area" value="default" />
-        <button type="submit" style="margin-left: 10px; padding: 10px 20px; background: #ee4c2c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Search</button>
+        <button type="submit">Search</button>
       </form>
     </div>
   </div>

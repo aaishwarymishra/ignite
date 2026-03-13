@@ -214,32 +214,63 @@ article.pytorch-article .function dt span.pre {
   padding: 2px 0.2px;
 }
 
-/* Search Button in Sidebar */
-#search-icon-btn {
+#search-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 10px 12px;
-  margin-top: 8px;
-  background: transparent;
-  color: #ee4c2c;
-  border: 2px solid #ee4c2c;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.2s ease;
 }
 
-#search-icon-btn:hover {
-  background: rgba(238, 76, 44, 0.1);
-  border-color: #d43613;
-  box-shadow: 0 2px 8px rgba(238, 76, 44, 0.2);
+#search-overlay .search-overlay-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-#search-icon-btn:active {
-  background: rgba(238, 76, 44, 0.05);
-  transform: scale(0.98);
+#close-search {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+#search-overlay .search-overlay-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+#overlay-rtd-search-form {
+  display: flex;
+}
+
+#overlay-search-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#overlay-rtd-search-form button[type="submit"] {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background: #ee4c2c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
