@@ -28,6 +28,6 @@ repos:
     rev: v0.11.13
     hooks:
       - id: ruff-check
-        types_or: [python, pyi, jupyter]
+        types_or: [python, pyi]
       - id: ruff-format
         types_or: [python, pyi, jupyter]

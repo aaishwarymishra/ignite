@@ -685,7 +685,7 @@ class ConcatScheduler(ParamScheduler):
 
         if len(schedulers) != len(durations) + 1:
             raise ValueError(
-                "Incorrect number schedulers or duration values, " f"given {len(schedulers)} and {len(durations)}"
+                f"Incorrect number schedulers or duration values, given {len(schedulers)} and {len(durations)}"
             )
 
         for i, scheduler in enumerate(schedulers):
@@ -1727,8 +1727,7 @@ class ReduceLROnPlateauScheduler(ParamScheduler):
         """
         if len(metric_values) != num_events:
             raise ValueError(
-                "Length of argument metric_values should be equal to num_events. "
-                f"{len(metric_values)} != {num_events}"
+                f"Length of argument metric_values should be equal to num_events. {len(metric_values)} != {num_events}"
             )
 
         keys_to_remove = ["optimizer", "metric_name", "save_history"]
