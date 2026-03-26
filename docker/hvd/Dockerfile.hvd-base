@@ -32,6 +32,11 @@ RUN apt-get update && apt-get install -y git && \
 # Build runtime image
 FROM pytorch/pytorch:${PTH_VERSION}-runtime
 
+# Set env vars to allow pip install
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ENV PIP_ROOT_USER_ACTION=ignore
+
+
 # Install tzdata / git
 RUN apt-get update && \
     ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime && \
@@ -66,10 +71,6 @@ RUN mkdir -p pytorch-ignite-examples && \
     # rm very large .git folder
     rm -rf .git
 
-# Horovod
-RUN conda install -y nccl -c conda-forge
-
-ENV LD_LIBRARY_PATH=/opt/conda/lib:$LD_LIBRARY_PATH
 
 COPY --from=builder /horovod/horovod-*.whl /horovod/
 
