@@ -83,7 +83,26 @@ def setup_tb_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> TensorboardLogger:
-    """Setup TensorBoard logging on trainer and optional evaluators."""
+    """Method to setup TensorBoard logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    Args:
+        output_path: logging directory path
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.tensorboard_logger.TensorboardLogger`
+    """
     logger = TensorboardLogger(log_dir=output_path, **kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
@@ -96,7 +115,30 @@ def setup_visdom_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> VisdomLogger:
-    """Setup Visdom logging on trainer and optional evaluators."""
+    """Method to setup Visdom logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    .. warning::
+
+        This function uses VisdomLogger which is currently untested due to the visdom package being
+        unmaintained and difficult to install with modern Python packages. Use at your own risk.
+
+    Args:
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.visdom_logger.VisdomLogger`
+    """
     logger = VisdomLogger(**kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
@@ -109,7 +151,25 @@ def setup_mlflow_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> MLflowLogger:
-    """Setup MLflow logging on trainer and optional evaluators."""
+    """Method to setup MLflow logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    Args:
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.mlflow_logger.MLflowLogger`
+    """
     logger = MLflowLogger(**kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
@@ -122,7 +182,25 @@ def setup_neptune_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> NeptuneLogger:
-    """Setup Neptune logging on trainer and optional evaluators."""
+    """Method to setup Neptune logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    Args:
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.neptune_logger.NeptuneLogger`
+    """
     logger = NeptuneLogger(**kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
@@ -135,7 +213,25 @@ def setup_wandb_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> WandBLogger:
-    """Setup Weights and Biases logging on trainer and optional evaluators."""
+    """Method to setup WandB logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    Args:
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.wandb_logger.WandBLogger`
+    """
     logger = WandBLogger(**kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
@@ -148,7 +244,25 @@ def setup_plx_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> PolyaxonLogger:
-    """Setup Polyaxon logging on trainer and optional evaluators."""
+    """Method to setup Polyaxon logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    Args:
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.polyaxon_logger.PolyaxonLogger`
+    """
     logger = PolyaxonLogger(**kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
@@ -161,7 +275,25 @@ def setup_clearml_logging(
     log_every_iters: int = 100,
     **kwargs: Any,
 ) -> ClearMLLogger:
-    """Setup ClearML logging on trainer and optional evaluators."""
+    """Method to setup ClearML logging on trainer and a list of evaluators. Logged metrics are:
+
+        - Training metrics, e.g. running average loss values
+        - Learning rate(s)
+        - Evaluation metrics
+
+    Args:
+        trainer: trainer engine
+        optimizers: single or dictionary of
+            torch optimizers. If a dictionary, keys are used as tags arguments for logging.
+        evaluators: single or dictionary of evaluators. If a dictionary,
+            keys are used as tags arguments for logging.
+        log_every_iters: interval for loggers attached to iteration events. To log every iteration,
+            value can be set to 1 or None.
+        kwargs: optional keyword args to be passed to construct the logger.
+
+    Returns:
+        :class:`~ignite.handlers.clearml_logger.ClearMLLogger`
+    """
     logger = ClearMLLogger(**kwargs)
     _setup_logging(logger, trainer, optimizers, evaluators, log_every_iters)
     return logger
