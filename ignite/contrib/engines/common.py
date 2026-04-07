@@ -28,6 +28,10 @@ from ignite.engine.logger import (
     setup_visdom_logging,
     setup_wandb_logging,
 )
+
+# The above imports are re-exports for backward compatibility and may appear unused
+# to linters — ignore unused-import (F401).
+# ruff: noqa: F401
 from ignite.handlers import (
     Checkpoint,
     DiskSaver,
