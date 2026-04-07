@@ -10,13 +10,16 @@ from torch.utils.data.distributed import DistributedSampler
 import ignite.distributed as idist
 import ignite.handlers as handlers
 from ignite.contrib.engines.common import (
-    _setup_logging,
     add_early_stopping_by_val_score,
     gen_save_best_models_by_val_score,
     save_best_model_by_val_score,
     setup_any_logging,
-    setup_clearml_logging,
     setup_common_training_handlers,
+)
+from ignite.engine import Engine, Events
+from ignite.engine.logger import (
+    _setup_logging,
+    setup_clearml_logging,
     setup_mlflow_logging,
     setup_neptune_logging,
     setup_plx_logging,
@@ -25,7 +28,6 @@ from ignite.contrib.engines.common import (
     setup_visdom_logging,
     setup_wandb_logging,
 )
-from ignite.engine import Engine, Events
 from ignite.handlers import DiskSaver, TerminateOnNan
 
 
@@ -574,8 +576,23 @@ def test_setup_mlflow_logging(dirname):
 def test_setup_wandb_logging(dirname):
     from unittest.mock import patch
 
-    with patch("ignite.contrib.engines.common.WandBLogger") as _:
+    with patch("ignite.engine.logger.WandBLogger") as _:
         setup_wandb_logging(MagicMock())
+
+
+def test_setup_logging_migration_aliases():
+    import ignite.contrib.engines.common as common
+    import ignite.engine.logger as logger_mod
+
+    assert common._setup_logging is logger_mod._setup_logging
+    assert common.setup_tb_logging is logger_mod.setup_tb_logging
+    assert common.setup_visdom_logging is logger_mod.setup_visdom_logging
+    assert common.setup_mlflow_logging is logger_mod.setup_mlflow_logging
+    assert common.setup_neptune_logging is logger_mod.setup_neptune_logging
+    assert common.setup_wandb_logging is logger_mod.setup_wandb_logging
+    assert common.setup_plx_logging is logger_mod.setup_plx_logging
+    assert common.setup_clearml_logging is logger_mod.setup_clearml_logging
+    assert common.setup_trains_logging is logger_mod.setup_trains_logging
 
 
 def test_setup_clearml_logging():
