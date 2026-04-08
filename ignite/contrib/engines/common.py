@@ -17,7 +17,7 @@ except ImportError:
 
 import ignite.distributed as idist
 from ignite.engine import Engine, Events
-from ignite.engine.logger import (
+from ignite.handlers.logger_utils import (
     _setup_logging,
     setup_clearml_logging,
     setup_mlflow_logging,

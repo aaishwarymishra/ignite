@@ -66,20 +66,6 @@ helper methods to define supervised trainer and evaluator
 helper methods to setup experiment loggers
 ------------------------------------------
 
-.. currentmodule:: ignite.engine
-
-.. autosummary::
-    :nosignatures:
-    :toctree: generated
-
-    setup_tb_logging
-    setup_visdom_logging
-    setup_mlflow_logging
-    setup_neptune_logging
-    setup_wandb_logging
-    setup_plx_logging
-    setup_clearml_logging
-    setup_trains_logging
 
 Resuming the training
 ---------------------

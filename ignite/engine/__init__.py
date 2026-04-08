@@ -21,16 +21,6 @@ import ignite.distributed as idist
 from ignite.engine.deterministic import DeterministicEngine
 from ignite.engine.engine import Engine
 from ignite.engine.events import CallableEventWithFilter, EventEnum, Events, EventsList, RemovableEventHandle, State
-from ignite.engine.logger import (
-    setup_clearml_logging,
-    setup_mlflow_logging,
-    setup_neptune_logging,
-    setup_plx_logging,
-    setup_tb_logging,
-    setup_trains_logging,
-    setup_visdom_logging,
-    setup_wandb_logging,
-)
 from ignite.metrics import Metric
 from ignite.utils import convert_tensor
 
@@ -51,14 +41,6 @@ __all__ = [
     "supervised_training_step_tpu",
     "supervised_evaluation_step",
     "supervised_evaluation_step_amp",
-    "setup_tb_logging",
-    "setup_visdom_logging",
-    "setup_mlflow_logging",
-    "setup_neptune_logging",
-    "setup_wandb_logging",
-    "setup_plx_logging",
-    "setup_clearml_logging",
-    "setup_trains_logging",
 ]
 
 
