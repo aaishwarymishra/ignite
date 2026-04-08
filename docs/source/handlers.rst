@@ -90,6 +90,8 @@ Loggers
 
 Logger setup helpers
 ---------------------
+.. automodule:: ignite.handlers.logger_utils
+
 .. currentmodule:: ignite.handlers.logger_utils
 
 .. autosummary::
