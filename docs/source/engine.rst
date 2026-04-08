@@ -63,10 +63,6 @@ helper methods to define supervised trainer and evaluator
     supervised_evaluation_step
     supervised_evaluation_step_amp
 
-helper methods to setup experiment loggers
-------------------------------------------
-
-
 Resuming the training
 ---------------------
 
